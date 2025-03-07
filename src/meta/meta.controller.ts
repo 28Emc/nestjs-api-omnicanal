@@ -6,7 +6,7 @@ import { MessengerReq } from 'src/interfaces/messenger.interface';
 @Controller('meta')
 export class MetaController {
     constructor(private readonly metaService: MetaService) { }
-
+ 
     @Post('whatsapp')
     async sendWhatsApp(@Body() body: WhatsAppReq) {
         return this.metaService.sendWhatsAppMessage(body);

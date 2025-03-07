@@ -10,7 +10,7 @@ import { Conversation } from './conversation.entity';
 import { MessageDirection } from '../enums/message-direction.enum';
 import { MessageStatus } from '../enums/message-status.enum';
 
-@Entity('messages')
+@Entity('ge_meta_messages')
 @Unique(['messageId'])
 export class Message {
     @PrimaryGeneratedColumn('uuid')

@@ -9,7 +9,7 @@ import {
 import { ConversationChannel } from 'src/enums/conversation-channel.enum';
 import { Message } from './message.entity';
 
-@Entity('conversations')
+@Entity('ge_meta_conversations')
 export class Conversation {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -25,7 +25,7 @@ export class Conversation {
     channel: ConversationChannel;
 
     @OneToMany(() => Message, (message) => message.conversation, {
-        cascade: true,
+        cascade: true        
     })
     messages: Message[];
 

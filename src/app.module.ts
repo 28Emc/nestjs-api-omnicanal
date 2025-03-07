@@ -15,21 +15,22 @@ import { Message } from './entities/message.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: `.env.${process.env.NODE_ENV ?? 'development'}`,
       isGlobal: true,
-      envFilePath: '.env',
     }),
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'tu_usuario',
-      password: 'tu_contraseña',
-      database: 'tu_base_de_datos',
+      type: 'mysql',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT ?? 3306),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
       entities: [Conversation, Message],
+      autoLoadEntities: true,
+      socketPath: process.env.NODE_ENV === 'production' ? `/cloudsql/${process.env.DB_INSTANCE}` : undefined,
       // synchronize: true,
     }),
-    TypeOrmModule.forFeature([Conversation, Message]),
-    HttpModule,
+    // HttpModule,
     WhatsappModule,
     MessengerModule
   ],

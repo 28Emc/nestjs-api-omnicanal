@@ -26,7 +26,7 @@ export class WhatsappController {
             return challenge;
         } else {
             this.logger.warn('verifyWebhook() - Fallo en la verificación del Webhook de WhatsApp.');
-            return 'Error en la verificación';
+            return 'ERROR';
         }
     }
 

@@ -66,6 +66,9 @@ export class WhatsappService {
         }
     }
 
+    /**
+     * Maneja y persiste los estados de los mensajes     
+     */
     async _handleStatusWebhook(statusUpdate: { recipient_id: string, message_id: string, status: MessageStatus }) {
         this.logger.log(`_handleStatusWebhook() - Actualizando estado del mensaje ${statusUpdate.message_id} a ${statusUpdate.status}`);
         const { recipient_id, message_id, status } = statusUpdate;
