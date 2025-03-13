@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Query, Logger, Param } from '@nestjs/commo
 import { ConfigService } from '@nestjs/config';
 import { WhatsappService } from './whatsapp.service';
 import { CreateMessageDto } from './dto/create-message.dto';
+import { CreateTemplateMessageDto } from './dto/create-template-message.dto';
 
 @Controller('whatsapp')
 export class WhatsappController {
@@ -32,7 +33,7 @@ export class WhatsappController {
 
     @Post('webhook')
     async receiveWebhook(@Body() body: any) {
-        this.logger.log('receiveWebhook() - Webhook de WhatsApp recibido:', JSON.stringify(body));
+        this.logger.log('receiveWebhook() - Webhook de WhatsApp recibido');
         await this.whatsappService.handleWebhook(body);
         return 'EVENT_RECEIVED';
     }
@@ -41,6 +42,12 @@ export class WhatsappController {
     async sendOutboundMessage(@Body() createMessageDto: CreateMessageDto) {
         this.logger.log(`sendOutboundMessage() - Enviando mensaje a ${createMessageDto.to}`);
         return this.whatsappService.sendOutboundMessage(createMessageDto.to, createMessageDto.message);
+    }
+
+    @Post('send/template')
+    async sendOutboundTemplateMessage(@Body() createTemplateMessageDto: CreateTemplateMessageDto) {
+        this.logger.log(`sendOutboundTemplateMessage() - Enviando mensaje plantilla a ${createTemplateMessageDto.to}`);
+        return this.whatsappService.sendOutboundTemplateMessage(createTemplateMessageDto);
     }
 
     @Get('conversations')

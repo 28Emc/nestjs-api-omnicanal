@@ -1,7 +1,7 @@
 export enum MessageStatus {
-    PENDING = 'P',
-    SENT = 'S',
-    DELIVERED = 'D',
-    READ = 'R',
-    FAILED = 'F'
+    PENDING = 'PENDING',
+    SENT = 'SENT',
+    DELIVERED = 'DELIVERED',
+    READ = 'READ',
+    FAILED = 'FAILED'
 }

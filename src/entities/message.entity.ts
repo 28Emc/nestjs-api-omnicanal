@@ -43,6 +43,9 @@ export class Message {
     })
     status: MessageStatus;
 
+    @Column({ nullable: true })
+    errorReason: string;
+
     @CreateDateColumn()
     timestamp: Date;
 

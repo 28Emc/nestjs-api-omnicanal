@@ -32,15 +32,15 @@ import { Message } from './entities/message.entity';
     }),
     // HttpModule,
     WhatsappModule,
-    MessengerModule
+    // MessengerModule
   ],
   controllers: [AppController],
   providers: [
     AppService,
-    {
+    /* {
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
-    },
+    }, */
     AuthService
   ],
 })
